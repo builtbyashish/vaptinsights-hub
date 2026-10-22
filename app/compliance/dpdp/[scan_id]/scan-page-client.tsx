@@ -11,6 +11,7 @@ import { DpdpReportDisplay } from "../components/report/dpdp-report-display";
 import { dpdpFooterLinks, dpdpCopy } from "../constants/dpdp-homepage";
 import Turnstile from "@/components/common/Turnstile";
 import { setGlobalTurnstileToken } from "@/lib/turnstile-store";
+import { AlertTriangle } from "lucide-react";
 
 interface ScanPageClientProps {
   scanID: string;
@@ -51,7 +52,9 @@ export function ScanPageClient({ scanID }: ScanPageClientProps) {
     if (error || !scanRecord) {
       return (
         <div className="mx-auto max-w-md rounded-2xl border border-rose-500/20 bg-rose-500/10 p-6 text-center">
-          <span className="text-3xl">⚠️</span>
+          <div className="flex justify-center">
+            <AlertTriangle className="size-8 text-rose-400" />
+          </div>
           <h3 className="mt-4 text-base font-bold text-white">System Error</h3>
           <p className="mt-2 text-xs text-rose-300">
             {error?.message || "Failed to load compliance record from database."}
