@@ -59,12 +59,6 @@ export function DpdpHomepage() {
   const isProcessing = formik.isSubmitting || discoverMutation.isPending;
   const displayError = (formik.submitCount > 0 && formik.errors.url) || apiErrorMsg;
 
-  const quickSamples = [
-    "https://zerodha.com",
-    "https://swiggy.com",
-    "https://tcs.com",
-  ];
-
   return (
     <main className="min-h-screen flex flex-col bg-[#060e18] text-slate-100">
       <DpdpHeader minimal />
@@ -174,24 +168,6 @@ export function DpdpHomepage() {
                       {displayError}
                     </p>
                   )}
-
-                  {/* Sample Targets */}
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
-                    <span>Try:</span>
-                    {quickSamples.map((item) => (
-                      <button
-                        key={item}
-                        type="button"
-                        onClick={() => {
-                          formik.setFieldValue("url", item);
-                          setApiErrorMsg("");
-                        }}
-                        className="rounded border border-white/10 bg-white/5 px-2 py-0.5 text-slate-300 transition hover:border-cyan-400/40 hover:bg-white/10 hover:text-white"
-                      >
-                        {item.replace("https://", "")}
-                      </button>
-                    ))}
-                  </div>
 
                   {/* Cloudflare Turnstile Verification */}
                   <div className="flex justify-center pt-1">
