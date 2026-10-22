@@ -74,7 +74,12 @@ export function AuditConsole({
         scanMode,
       };
 
-      const res = await fetch("/api/php2shell/check", {
+      const apiEndpoint =
+        typeof window !== "undefined" && window.location.pathname.startsWith("/compliance")
+          ? "/compliance/api/php2shell/check"
+          : "/api/php2shell/check";
+
+      const res = await fetch(apiEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
